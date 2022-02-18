@@ -13,7 +13,7 @@ const config = require('../config.json');
 export class JsonLoader {
     private static microsoftPath: string = "https://raw.githubusercontent.com/Microsoft/";
     private static pbicvbotPath: string = "https://raw.githubusercontent.com/pbicvbot/";
-    private static localizationUtilsRepoName: string = "powerbi-visuals-utils-localizationutils";
+    private static localizationUtilsRepoName: string = "test-loc-utils";
     private static capabilities: string = "capabilities";
     private static microsoft: string = "Microsoft";
     private static pbicvbot: string = config.ownerName;
