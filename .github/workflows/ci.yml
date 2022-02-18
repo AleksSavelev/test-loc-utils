@@ -2,7 +2,7 @@ name: Tests
 
 on:
   schedule:
-    - cron: '5 14 * * *'
+    - cron: '8 11 * * *'
 
 jobs:
   capabilitiesToResources:
