@@ -1,5 +1,5 @@
 {
-  "name": "CapabilitiesParser",
+  "name": "capabilities_parser",
   "version": "1.0.1",
   "description": "",
   "main": "allResourcesToUtilsRepo.js",

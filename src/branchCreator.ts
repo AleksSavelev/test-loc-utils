@@ -21,19 +21,25 @@ export class BranchCreator {
                     ref: locUpdateRefName
                 }).then((refs) => {
                     if(!refs.data.length){
-                        github.rest.git.getRef({
+                        github.rest.git.listMatchingRefs({
                             owner: BranchCreator.ms,
                             repo: visualName,
                             ref: "heads/main"
-                        })
-                        .then((ref) => {
-                            github.rest.git.createRef({
-                                owner: BranchCreator.ownerName,
+                        }).then(msRefs => {
+                            github.rest.git.getRef({
+                                owner: BranchCreator.ms,
                                 repo: visualName,
-                                ref: locUpdateRefName,
-                                sha: ref.data.object.sha
+                                ref: `heads/${msRefs.data.length ? "main" : "master"}`
+                            })
+                            .then((ref) => {
+                                github.rest.git.createRef({
+                                    owner: BranchCreator.ownerName,
+                                    repo: visualName,
+                                    ref: locUpdateRefName,
+                                    sha: ref.data.object.sha
+                                });
                             });
-                        });
+                        })
                     }
                 })
             }
