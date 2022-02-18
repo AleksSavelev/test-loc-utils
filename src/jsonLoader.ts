@@ -156,7 +156,7 @@ export class JsonLoader {
         forceMicrosoftMasterSource?: boolean, 
         checkForExistingPullRequest?: boolean
     ): Promise<IndexedFoldersSet> {
-
+        console.log("Update type:" + updateType)
         if (updateType === UpdateType.UtilsToCv) {
             return JsonLoader.GetJsonsUtilsToCv(repoType);
         }

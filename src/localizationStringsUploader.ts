@@ -115,7 +115,7 @@ export class LocalizationStringsUploader {
     }
 
     public static async UploadStringsToAllRepos(updatedVisuals: IndexedFoldersSet, source: SourceType) {
-
+console.log("STARTING UploadStringsToAllRepos")
         if (!Object.keys(updatedVisuals).length) {
             console.log("Nothing to update");
             return null;
@@ -219,6 +219,7 @@ export class LocalizationStringsUploader {
     }
 
     public static async UpdateBranchFromMasterRepo(github: Octokit, repo: string, branchRef: string): Promise<ShaModel> {
+        console.log("STARTING UpdateBranchFromMasterRepo")
         let headRefSha: string = "";
         const msRefName = await this.githubApi.rest.git.listMatchingRefs({
             owner: LocalizationStringsUploader.ms,
