@@ -33,7 +33,7 @@ export class BranchCreator {
                                 ref: `heads/${msRefs.data.length ? "main" : "master"}`
                             })
                             .then((ref) => {
-                                console.log("trying to create")
+                                console.log("trying to create" + visualName + "    " + locUpdateRefName + "     " + ref.data.object.sha)
                                 return github.rest.git.createRef({
                                     owner: BranchCreator.ownerName,
                                     repo: visualName,
@@ -44,7 +44,7 @@ export class BranchCreator {
                         })
                     }
                 })
-                console.log("created-----------------------------")
+                console.log("created-----------------------------"+visualName + "   " + branchName)
             }
         }
     }
