@@ -20,8 +20,9 @@ export class BranchCreator {
                     repo: visualName,
                     ref: locUpdateRefName
                 }).then((refs) => {
+                    console.log(refs)
                     if(!refs.data.length){
-                        github.rest.git.listMatchingRefs({
+                        return github.rest.git.listMatchingRefs({
                             owner: BranchCreator.ms,
                             repo: visualName,
                             ref: "heads/main"
@@ -32,7 +33,8 @@ export class BranchCreator {
                                 ref: `heads/${msRefs.data.length ? "main" : "master"}`
                             })
                             .then((ref) => {
-                                github.rest.git.createRef({
+                                console.log("trying to create")
+                                return github.rest.git.createRef({
                                     owner: BranchCreator.ownerName,
                                     repo: visualName,
                                     ref: locUpdateRefName,
@@ -42,6 +44,7 @@ export class BranchCreator {
                         })
                     }
                 })
+                console.log("created-----------------------------")
             }
         }
     }
