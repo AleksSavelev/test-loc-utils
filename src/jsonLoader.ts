@@ -82,8 +82,7 @@ export class JsonLoader {
 
                 if (checkForExistingPullRequest) {
                     let prExists: boolean = await LocalizationStringsUploader.IsPullRequestExists(
-                        JsonLoader.microsoft, 
-                        visualName,
+                        JsonLoader.microsoft, "powerbi-visuals-wordcloud",
                         `${this.pbicvbot} : ${updateType === UpdateType.CapabilitiesToCv ? "locUpdateCapabilities" : "locUpdate"}`
                     );
                     

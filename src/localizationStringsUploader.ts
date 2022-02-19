@@ -26,7 +26,7 @@ export class LocalizationStringsUploader {
         }
 
         let prExists: boolean = await LocalizationStringsUploader.IsPullRequestExists(LocalizationStringsUploader.ms,
-            LocalizationStringsUploader.localizationUtilsRepoName,
+            "powerbi-visuals-utils-localizationutils",
             `${this.pbicvbot}:main`);
 
         const sha: ShaModel = await LocalizationStringsUploader.GetShaModelForCurrentCommit(this.githubApi, LocalizationStringsUploader.localizationUtilsRepoName, "heads/main");
