@@ -15,4 +15,6 @@ jobs:
       - name: Install packages
         run: npm i
       - name: Run
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run capabilitiesToResources
