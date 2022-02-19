@@ -13,12 +13,12 @@ class LocalizationStringsUtils {
     public static async Parse() {
         const mainRefName = await this.githubApi.rest.git.listMatchingRefs({
             owner: LocalizationStringsUploader.ms,
-            repo: LocalizationStringsUploader.localizationUtilsRepoName,
+            repo: "powerbi-visuals-utils-localizationutils",
             ref: "heads/main"
         }).then(refs => refs.data.length ? "main" : "master")
 
         let prExists: boolean = await LocalizationStringsUploader.IsPullRequestExists(LocalizationStringsUploader.ms, 
-            LocalizationStringsUploader.localizationUtilsRepoName,
+            "powerbi-visuals-utils-localizationutils",
             `${config.ownerName}:${mainRefName}`);
 
         if (!prExists) {

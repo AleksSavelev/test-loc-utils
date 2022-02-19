@@ -95,14 +95,14 @@ export class LocalizationStringsUploader {
             .then(() => {
                 return this.githubApi.rest.pulls.list({
                     owner: LocalizationStringsUploader.ms,
-                    repo: LocalizationStringsUploader.localizationUtilsRepoName
+                    repo: "powerbi-visuals-utils-localizationutils",
                 })
                     .then(() => {
                         if (!prExists) {
                             return this.githubApi.rest.pulls.create({
                                 base: "main",
                                 owner: LocalizationStringsUploader.ms,
-                                repo: LocalizationStringsUploader.localizationUtilsRepoName,
+                                repo: "powerbi-visuals-utils-localizationutils",
                                 head: `${this.pbicvbot}:main`,
                                 title: "Localization strings update"
                             });
