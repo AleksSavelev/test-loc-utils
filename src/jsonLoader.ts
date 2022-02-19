@@ -41,7 +41,7 @@ export class JsonLoader {
         let repoPath: string = forceMicrosoftMasterSource || (updateType === UpdateType.CvToUtils && type === SourceType.LocalizationStrings) ? JsonLoader.microsoftPath : JsonLoader.pbicvbotPath;
 
         if (type === SourceType.Capabilities) {
-            return JsonLoader.microsoftPath + visualName + "/master/capabilities.json";
+            return JsonLoader.microsoftPath + "powerbi-visuals-wordcloud" + "/master/capabilities.json";
         } else if (type === SourceType.UtilsRepo) {
             return repoPath
             + JsonLoader.localizationUtilsRepoName
@@ -51,7 +51,7 @@ export class JsonLoader {
         }
 
         return repoPath
-            + visualName
+            + (updateType === UpdateType.CvToUtils && type === SourceType.LocalizationStrings) ? "powerbi-visuals-wordcloud" : visualName
             + (forceMicrosoftMasterSource || updateType === UpdateType.CvToUtils ? "/master/stringResources/" :
                                 updateType === UpdateType.CapabilitiesToCv ?
                                     "/locUpdateCapabilities/stringResources/" : "/locUpdate/stringResources/")
