@@ -12,7 +12,7 @@ const config = require('../config.json');
 
 export class JsonLoader {
     private static microsoftPath: string = "https://raw.githubusercontent.com/Microsoft/";
-    private static pbicvbotPath: string = "https://raw.githubusercontent.com/pbicvbot/";
+    private static pbicvbotPath: string = "https://raw.githubusercontent.com/AleksSavelev/";
     private static localizationUtilsRepoName: string = "test-loc-utils";
     private static capabilities: string = "capabilities";
     private static microsoft: string = "Microsoft";
@@ -128,6 +128,7 @@ export class JsonLoader {
 
                 for (let i in values) {
                         let val = values[i];
+                        console.log(values)
                         console.log("Visual " + val.visualName + " prepared for parsing");
 
                         // remove byte order mark from json string. Found in linedotchart
