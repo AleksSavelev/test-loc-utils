@@ -4,7 +4,7 @@
     "PowerBI-visuals-ForceGraph": false,
     "PowerBI-visuals-RadarChart": false,
     "PowerBI-visuals-Tornado": false,
-    "PowerBI-visuals-WordCloud": true,
+    "test-wordCloud": true,
     "powerbi-visuals-bulletchart": false,
     "powerbi-visuals-chord": false,
     "powerbi-visuals-dotplot": false,
