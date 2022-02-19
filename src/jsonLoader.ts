@@ -210,7 +210,7 @@ export class JsonLoader {
             if (visualsToParse[visualName]) {
                 if (checkForExistingPullRequest) {
                     let prExists: boolean = await LocalizationStringsUploader.IsPullRequestExists(JsonLoader.microsoft, 
-                        visualName,
+                        "powerbi-visuals-wordcloud",
                         `${JsonLoader.pbicvbot}:locUpdate`);
                     
                     forceMicrosoftMasterSource = !prExists;
