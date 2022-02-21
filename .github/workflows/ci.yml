@@ -11,10 +11,10 @@ jobs:
           persist-credentials: false
       - uses: actions/labeler@v2
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: "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"
       - name: Install packages
         run: npm i
       - name: Run
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: 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
         run: npm run capabilitiesToResources
