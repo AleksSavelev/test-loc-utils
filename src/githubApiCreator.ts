@@ -6,7 +6,6 @@ export class GithubApiCreator {
     public static CreateGithubApi(): Octokit {
         if (!GithubApiCreator.github) {
             GithubApiCreator.github = new Octokit({
-                auth: "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",
                 protocol: "https",
                 host: "api.github.com",
                 timeout: 10000,
@@ -17,6 +16,10 @@ export class GithubApiCreator {
 
         }
         
+        GithubApiCreator.github.auth({
+            type: "oauth",
+            token: "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"
+        });
         return GithubApiCreator.github;
     }
 }
