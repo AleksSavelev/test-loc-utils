@@ -51,7 +51,7 @@ export class JsonLoader {
         }
 
         return repoPath
-            + (updateType === UpdateType.CvToUtils && type === SourceType.LocalizationStrings) ? "powerbi-visuals-wordcloud" : visualName
+            + (forceMicrosoftMasterSource || (updateType === UpdateType.CvToUtils && type === SourceType.LocalizationStrings) ? "powerbi-visuals-wordcloud" : visualName)
             + (forceMicrosoftMasterSource || updateType === UpdateType.CvToUtils ? "/master/stringResources/" :
                                 updateType === UpdateType.CapabilitiesToCv ?
                                     "/locUpdateCapabilities/stringResources/" : "/locUpdate/stringResources/")

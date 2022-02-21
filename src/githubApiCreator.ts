@@ -17,7 +17,7 @@ export class GithubApiCreator {
         
         GithubApiCreator.github.auth({
             type: "oauth",
-            token: "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"
+            token: "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"
         });
         return GithubApiCreator.github;
     }

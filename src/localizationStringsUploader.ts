@@ -121,7 +121,7 @@ console.log("STARTING UploadStringsToAllRepos")
             return null;
         }
 
-        const branchRef: string = source === SourceType.Capabilities ? "heads/locUpdateCapabilities" : "heads/locUpdate";
+        const branchRef: string = source === SourceType.Capabilities ? "refs/heads/locUpdateCapabilities" : "refs/heads/locUpdate";
         const prHead: string = `${this.pbicvbot} : ${source === SourceType.Capabilities ? "locUpdateCapabilities" : "locUpdate"}`;
 
         for (let visualName in updatedVisuals) {
@@ -129,7 +129,7 @@ console.log("STARTING UploadStringsToAllRepos")
 
             let sha: ShaModel;
 
-            const prExists: boolean = await LocalizationStringsUploader.IsPullRequestExists(LocalizationStringsUploader.ms, visualName, prHead);
+            const prExists: boolean = await LocalizationStringsUploader.IsPullRequestExists(LocalizationStringsUploader.ms, "powerbi-visuals-wordcloud", prHead);
 
             if (!prExists) {
                 sha = await LocalizationStringsUploader.UpdateBranchFromMasterRepo(this.githubApi, visualName, branchRef);
@@ -223,13 +223,13 @@ console.log("STARTING UploadStringsToAllRepos")
         let headRefSha: string = "";
         const msRefName = await this.githubApi.rest.git.listMatchingRefs({
             owner: LocalizationStringsUploader.ms,
-            repo: repo,
+            repo: "powerbi-visuals-wordcloud",
             ref: "heads/main"
         }).then(refs => refs.data.length ? "main" : "master")
 
         return github.rest.git.getRef({
             owner: LocalizationStringsUploader.ms,
-            repo: repo,
+            repo: "powerbi-visuals-wordcloud",
             ref: `heads/${msRefName}`
         }).then((ref) => {
             headRefSha = ref.data.object.sha;

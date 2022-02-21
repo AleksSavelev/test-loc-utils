@@ -23,13 +23,13 @@ export class BranchCreator {
                     console.log(refs)
                     if(!refs.data.length){
                         return github.rest.git.listMatchingRefs({
-                            owner: BranchCreator.ms,
-                            repo: "Powerbi-visuals-WordCloud",
+                            owner: BranchCreator.ownerName,
+                            repo: visualName,
                             ref: "heads/main"
                         }).then(msRefs => {
                             github.rest.git.getRef({
-                                owner: BranchCreator.ms,
-                                repo: "Powerbi-visuals-WordCloud",
+                                owner: BranchCreator.ownerName,
+                                repo: visualName,
                                 ref: `heads/${msRefs.data.length ? "main" : "master"}`
                             })
                             .then((ref) => {
