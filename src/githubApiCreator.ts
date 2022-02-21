@@ -13,7 +13,6 @@ export class GithubApiCreator {
                     "encoding": "null"
                 },
             });
-
         }
         
         GithubApiCreator.github.auth({
