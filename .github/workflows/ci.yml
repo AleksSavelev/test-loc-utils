@@ -1,21 +1,12 @@
-name: Pipelines
-
-on: [push]
+on:
+  push
 
 jobs:
-  capabilitiesToResources:
+  create_release:
+    environment: create release
     runs-on: ubuntu-latest
     steps:
-      - name: Prepare info
-        id: info
-        run: |
-          echo "::set-output name=branch::$(date +'new-translations_%F_%H-%M-%S')"
-          echo "::set-output name=pr-date::$(date +'%F %T %Z')"
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
       - name: Install packages
-        run: |
-          gh pr create -b "Auto created Pull Request with new translations" -t "$PR_NAME"
-        env:
-          PR_NAME: "New translations (${{steps.info.outputs.pr-date}})"
+        run: npm install
+      - name: Save artifacts
+        run: gh run download 
