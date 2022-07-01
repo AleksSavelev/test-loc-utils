@@ -18,4 +18,4 @@ jobs:
         run: |
           gh pr create -b "Auto created Pull Request with new translations" -t "$PR_NAME"
         env:
-          PR_NAME: 'New translations (${{steps.info.outputs.pr-date}})'
+          PR_NAME: "New translations (${{steps.info.outputs.pr-date}})"
