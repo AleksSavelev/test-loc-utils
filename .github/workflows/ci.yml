@@ -6,65 +6,16 @@ jobs:
   capabilitiesToResources:
     runs-on: ubuntu-latest
     steps:
+      - name: Prepare info
+        id: info
+        run: |
+          echo "::set-output name=branch::$(date +'new-translations_%F_%H-%M-%S')"
+          echo "::set-output name=pr-date::$(date +'%F %T %Z')"
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - uses: actions/labeler@v2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Install packages
-        run: npm i
-      - name: Run
-        run: npm run capabilitiesToResources
-  allResourcesToUtilsRepo:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      - uses: actions/labeler@v2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Install packages
-        run: npm i
-      - name: Run
-        run: npm run allResourcesToUtilsRepo
-  utilsRepoToAllResources:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      - uses: actions/labeler@v2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Install packages
-        run: npm i
-      - name: Run
-        run: npm run utilsRepoToAllResources
-  validateJsons:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      - uses: actions/labeler@v2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Install packages
-        run: npm i
-      - name: Run
-        run: npm run validateJsons
-  validateTranslations:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-      - uses: actions/labeler@v2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Install packages
-        run: npm i
-      - name: Run
-        run: npm run validateTranslations
+        run: |
+          gh pr create -b "Auto created Pull Request with new translations" -t $PR_NAME
+        env:
+          PR_NAME: "New translations (${{steps.info.outputs.pr-date}})"
