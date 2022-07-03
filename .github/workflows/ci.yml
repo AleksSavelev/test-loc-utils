@@ -17,4 +17,3 @@ jobs:
           name: dist-without-markdown
           path: |
             dist
-            !dist/**/*.md
