@@ -6,10 +6,15 @@ jobs:
     environment: create release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: npm install, build, and test
+        run: |
+          npm install
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
         with:
-          persist-credentials: true
-      - name: Install packages
-        run: npm install
-      - name: Save artifacts
-        run: gh run download 
+          name: dist-without-markdown
+          path: |
+            dist
+            !dist/**/*.md
