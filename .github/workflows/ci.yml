@@ -13,7 +13,7 @@ jobs:
           mkdir temp
           npm install
           cd temp
-          echp 'alpha' > alpha.html
+          echo 'alpha' > alpha.html
           cd ..
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
