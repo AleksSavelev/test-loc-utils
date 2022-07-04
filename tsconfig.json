@@ -1,21 +1,23 @@
 {
-  "compilerOptions": {
-    "allowJs": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es2016",
-    "module": "commonjs",
-    "outDir": "dist",
-    "strict": true
-  },
-  "include": [
-    "typings.d.ts",
-    "src/allResourcesToUtilsRepo.ts",
-    "src/updateStringsFromCapabilities.ts",
-    "src/updateStringsFromCommonRepo.ts",
-    "src/jsonValidator.ts",
-    "src/translationsValidator.ts",
-    "src/githubApiCreator.ts",
-    "src/loaderUtils.ts"
-  ]
-}
+    "compilerOptions": {
+      "allowJs": false,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "declaration": true,
+      "sourceMap": true,
+      "module": "ES2015",
+      "moduleResolution": "node",
+      "target": "ES2015",
+      "lib": [
+        "es2015",
+        "dom"
+      ],
+      "outDir": "./lib"
+    },
+    "files": [
+      "src/index.ts"
+    ],
+    "include": [
+      "src/index.ts"
+    ]
+  }
