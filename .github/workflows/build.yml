@@ -3,7 +3,9 @@
 
 name: build
 
-on: push
+on:
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -29,4 +31,4 @@ jobs:
         CI: true
     - name: Upload production artifacts
       run: |
-        gh release upload "lib/*"
+        gh release upload first "lib/*"
