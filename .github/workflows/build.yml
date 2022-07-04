@@ -30,8 +30,8 @@ jobs:
     - run: npm test
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
-        with:
-          name: artifacts
-          path: lib 
+      with:
+        name: artifacts
+        path: lib 
       env:
         CI: true
