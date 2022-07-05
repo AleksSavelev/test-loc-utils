@@ -22,8 +22,8 @@ jobs:
     - name: Upload production artifacts
       run: |
         gh release view
-        release=$(gh release view --json tag)
-        value=$(echo $release | jq -r '.tag')
+        release=$(gh release view --json tagName)
+        value=$(echo $release | jq -r '.tagName')
         zip -r lib.zip lib
         gh release upload $value "lib.zip"
       env: 
