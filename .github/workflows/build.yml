@@ -13,18 +13,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Run npm install, build and test
-      run: |
-        npm i --force
-        npm run build --if-present
-        npm run lint
-        npm test
-      env:
-        CI: true
+    # - name: Run npm install, build and test
+    #   run: |
+    #     npm i --force
+    #     npm run build --if-present
+    #     npm run lint
+    #     npm test
     - name: Upload production artifacts
       run: |
         gh release view
-        release=$(gh release view --json id jq -r '.id')
+        release=$(gh release view --json id)
         # value=$(jq  release)
         echo $release
         zip -r lib.zip lib
