@@ -23,7 +23,7 @@ jobs:
       run: |
         gh release view
         release=$(gh release view --json id)
-        value=$(jq $release jq -r '.id')
+        value=$(jq -r $release '.id')
         echo $value
         zip -r lib.zip lib
         gh release upload $value "lib.zip"
