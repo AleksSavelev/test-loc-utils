@@ -27,6 +27,7 @@ jobs:
         CI: true
     - name: Upload production artifacts
       run: |
-        gh release upload first "lib"
+        zip -r lib.zip lib
+        gh release upload first "lib.zip"
       env: 
         GH_TOKEN: ${{secrets.GH_TOKEN}}
