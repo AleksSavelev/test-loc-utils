@@ -5,7 +5,7 @@ name: build
 
 on:
   release:
-    types: [created]
+    types: [unpublished]
 
 jobs:
   build:
@@ -24,8 +24,10 @@ jobs:
     - name: Upload production artifacts
       run: |
         gh release view
-        release=$(gh release view --json)
+        release=$(gh release view --json id jq -r '.id')
+        # value=$(jq  release)
+        echo $release
         zip -r lib.zip lib
-        gh release upload first "lib.zip"
+        gh release upload $release "lib.zip"
       env: 
         GH_TOKEN: ${{secrets.GH_TOKEN}}
