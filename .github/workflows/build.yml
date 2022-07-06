@@ -27,7 +27,7 @@ jobs:
     - run: zip -r lib.zip lib
     - name: Upload production artifacts
       run: |
-        gh release upload $TAG_NAME "lib.zip"
+        gh release upload $TAG_NAME "lib.zip#build"
         gh release edit $TAG_NAME --draft=false
       env:
         TAG_NAME: ${{steps.info.outputs.tag-name}}
