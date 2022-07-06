@@ -1,33 +1,31 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
 name: build
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
-    env: 
-      GH_TOKEN: ${{secrets.GH_TOKEN}}
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
     - uses: actions/checkout@v2
-    - name: Move release to draft
-      id: info
-      run: |
-        release=$(gh release view --json tagName)
-        value=$(echo $release | jq -r '.tagName')
-        gh release edit $value --draft=true
-        echo "::set-output name=tag-name::$value"
-    - name: Run npm install, build and test
-      run: |
-        npm i
-        npm run build --if-present
-        npm run lint --if-present
-        npm test --if-present
-    - run: zip -r lib.zip lib
-    - name: Upload production artifacts
-      run: |
-        gh release upload $TAG_NAME "lib.zip#build"
-        gh release edit $TAG_NAME --draft=false
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run lint
+    - run: npm test
       env:
-        TAG_NAME: ${{steps.info.outputs.tag-name}}
+        CI: true

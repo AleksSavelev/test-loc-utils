@@ -25,13 +25,13 @@
  */
 
 const path = require('path');
-const webpack = require("webpack");
 
 module.exports = {
     entry: './src/index.ts',
     devtool: 'source-map',
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
@@ -47,22 +47,16 @@ module.exports = {
             {
                 test: /\.json$/,
                 loader: 'json-loader'
-            }
+              }
         ]
     },
     externals: {
-        "powerbi-visuals-tools": '{}',
         "powerbi-visuals-api": '{}'
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.css']
+        extensions: ['.tsx', '.ts', '.js','.css']
     },
     output: {
         path: path.resolve(__dirname, ".tmp/test")
-    },
-    plugins: [
-        new webpack.ProvidePlugin({
-            'powerbi-visuals-api': null
-        })
-    ]
+    }
 };

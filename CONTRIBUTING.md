@@ -1,8 +1,8 @@
 # How to contribute
-If you would like to contribute to the Power BI visuals ChartUtils there are many ways you can help.
+If you would like to contribute to the Power BI visuals ColorUtils there are many ways you can help.
 
 ## Reporting issues
-We use [GitHub issues](https://github.com/Microsoft/powerbi-visuals-utils-chartutils/issues) as an issue tracker for the repository. Firstly, please search in open issues and try to make sure your problem doesn't exist. If there is an issue, add your comments to this issue.
+We use [GitHub issues](https://github.com/Microsoft/powerbi-visuals-utils-colorutils/issues) as an issue tracker for the repository. Firstly, please search in open issues and try to make sure your problem doesn't exist. If there is an issue, add your comments to this issue.
 If there are no issues yet, please open a new one.
 
 ## Contributing Code
@@ -11,7 +11,7 @@ If you would like to contribute an improvement or a fix please take a look at ou
 ## Sending a Pull Request
 Before submitting a pull request please make sure the following is done:
 
-1. Fork [the repository](https://github.com/Microsoft/powerbi-visuals-utils-chartutils)
+1. Fork [the repository](https://github.com/Microsoft/powerbi-visuals-utils-colorutils)
 2. Create a branch from the ```master```
 3. Ensure that the code style checks are passed ([How to lint the source code](./docs/dev/development-workflow.md#how-to-lint-the-source-code))
 4. Ensure that the unit tests are passed ([How to run unit tests locally](./docs/dev/development-workflow.md#how-to-run-unit-tests-locally))
