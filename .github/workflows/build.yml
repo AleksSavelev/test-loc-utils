@@ -23,7 +23,7 @@ jobs:
         echo "::set-output name=tag-name::$value"
     - name: Run npm install, build and test
       run: |
-        npm i --force
+        npm i
         npm run build --if-present
         npm run lint
         npm test
