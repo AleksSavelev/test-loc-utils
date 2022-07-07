@@ -1,7 +1,7 @@
 {
-  "name": "powerbi-visuals-utils-colorutils",
+  "name": "test-loc-utils",
   "version": "2.3.1",
-  "description": "ColorUtils",
+  "description": "testloc",
   "main": "lib/index",
   "types": "lib/index",
   "repository": {
