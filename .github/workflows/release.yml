@@ -12,9 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Move release to draft
-      run: gh release edit $TAG_NAME --draft=true
+      run: |
+        gh release edit $TAG_NAME --draft=true
       env:
-        TAG_NAME: ${{ github.event.tag_name }}
+        TAG_NAME: ${{ github.event.release.tag_name }}
     - name: Run npm install, build and test
       run: |
         npm i
@@ -27,4 +28,4 @@ jobs:
         gh release upload $TAG_NAME "lib.zip#build"
         gh release edit $TAG_NAME --draft=false
       env:
-        TAG_NAME: ${{ github.event.tag_name }}
+        TAG_NAME: ${{ github.event..release.tag_name }}
