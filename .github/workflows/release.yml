@@ -11,32 +11,10 @@ jobs:
       GH_TOKEN: ${{secrets.GH_TOKEN}}
     steps:
     - uses: actions/checkout@v2
-    - name: "call action"
-      id: last_release
-      uses: InsonusK/get-latest-release@v1.0.1
-      with:
-        myToken: ${{secrets.GH_TOKEN}}
-        view_top: 1
-    - name: Dump GitHub context
-      id: github_context_step
-      run: echo '${{ toJSON(github) }}'
-    - name: Dump job context
-      run: echo '${{ toJSON(job) }}'
-    - name: Dump steps context
-      run: echo '${{ toJSON(steps) }}'
-    - name: Dump runner context
-      run: echo '${{ toJSON(runner) }}'
-    - name: Dump strategy context
-      run: echo '${{ toJSON(strategy) }}'
-    - name: Dump matrix context
-      run: echo '${{ toJSON(matrix) }}'
-    - name: Move release to draft
-      id: info
       run: |
-        echo ${{runner.name}}
-        release=$(gh release view --json tagName -q '.tagName')
         gh release edit $release --draft=true
-        echo "::set-output name=tag-name::$release"
+      env:
+        TAG_NAME: ${{ github.event.tagName }}
     - name: Run npm install, build and test
       run: |
         npm i
@@ -49,4 +27,4 @@ jobs:
         gh release upload $TAG_NAME "lib.zip#build"
         gh release edit $TAG_NAME --draft=false
       env:
-        TAG_NAME: ${{steps.info.outputs.tag-name}}
+        TAG_NAME: ${{ github.event.tagName }}
