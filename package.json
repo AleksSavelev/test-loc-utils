@@ -6,17 +6,13 @@
   "types": "lib/index",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Microsoft/powerbi-visuals-utils-colorutils.git"
+    "url": "git+https://github.com/alekssavelev/test-loc-utils.git"
   },
   "keywords": [
     "powerbi-visuals-utils"
   ],
   "author": "Microsoft",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Microsoft/powerbi-visuals-utils-colorutils/issues"
-  },
-  "homepage": "https://github.com/Microsoft/powerbi-visuals-utils-colorutils#readme",
   "files": [
     "lib"
   ],
