@@ -20,7 +20,7 @@ jobs:
     - name: Move release to draft
       id: info
       run: |
-        echo $GITHUB_ACTION
+        echo ${{github.event}}
         release=$(gh release view --json tagName -q '.tagName')
         gh release edit $release --draft=true
         echo "::set-output name=tag-name::$release"
