@@ -11,6 +11,10 @@ jobs:
       GH_TOKEN: ${{secrets.GH_TOKEN}}
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        registry-url: 'https://registry.npmjs.org'
     - name: Move release to draft
       run: |
         gh release edit $TAG_NAME --draft=true
