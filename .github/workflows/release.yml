@@ -27,6 +27,6 @@ jobs:
       env:
         TAG_NAME: ${{ github.event.release.tag_name }}
     - name: Publish package on NPM
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPMJS_TOKEN }}
