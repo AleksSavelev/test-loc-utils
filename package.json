@@ -1,6 +1,6 @@
 {
   "name": "test-loc-utils",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "testloc",
   "main": "lib/index",
   "types": "lib/index",
