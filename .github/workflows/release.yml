@@ -20,6 +20,10 @@ jobs:
     - name: Move release to draft
       id: info
       run: |
+        test=$(echo gh api \
+          -H "Accept: application/vnd.github+json" \
+          /repos/AleksSavelev/test-loc-utils/releases/latest)
+        echo $test
         echo ${{steps.last_release.outputs.tagName}}
         release=$(gh release view --json tagName -q '.tagName')
         gh release edit $release --draft=true
