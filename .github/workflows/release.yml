@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Move release to draft
       run: |
-        gh release edit $release --draft=true
+        gh release edit $TAG_NAME --draft=true
       env:
         TAG_NAME: ${{ github.event.tagName }}
     - name: Run npm install, build and test
