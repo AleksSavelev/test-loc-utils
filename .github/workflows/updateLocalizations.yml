@@ -123,7 +123,7 @@ jobs:
             cd $mainFolder
           done;
         env:
-          BRANCH: ${{needs.update_translations.outputs.branch}}
+          BRANCH: ${{needs.update_translations.outputs.branch-name}}
       - name: Copy translations to submodules
         run: |
           for file in ./visuals/*/stringResources/*/resources.resjson; do 
@@ -155,7 +155,7 @@ jobs:
             echo "::endgroup::"
           done;
         env:
-          BRANCH: ${{needs.update_translations.outputs.branch}}
+          BRANCH: ${{needs.update_translations.outputs.branch-name}}
           PR_NAME: ${{needs.update_translations.outputs.pr-name}}
       - name: Set Loc bot config details
         run: |
