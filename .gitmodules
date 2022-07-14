@@ -1,14 +1,12 @@
-[submodule "visuals/powerbi-visuals-timeline"]
-	path = visuals/powerbi-visuals-timeline
-	url = https://github.com/AleksSavelev/powerbi-visuals-timeline
-	branch = master
-[submodule "visuals/powerbi-visuals-wordcloud"]
-	path = visuals/powerbi-visuals-wordcloud
-	url = https://github.com/AleksSavelev/powerbi-visuals-wordcloud
-	branch = main
-[submodule "visuals/powerbi-visuals-tornado"]
-	path = visuals/powerbi-visuals-tornado
-	url = https://github.com/AleksSavelev/powerbi-visuals-tornado
-[submodule "powerbi-visuals-asterplot"]
-	path = visuals/powerbi-visuals-asterplot
-	url = https://github.com/AleksSavelev/powerbi-visuals-asterplot
+[submodule "visuals/PowerBI-visuals-AsterPlot"]
+	path = visuals/PowerBI-visuals-AsterPlot
+	url = https://github.com/AleksSavelev/PowerBI-visuals-AsterPlot.git
+[submodule "visuals/PowerBI-visuals-WordCloud"]
+	path = visuals/PowerBI-visuals-WordCloud
+	url = https://github.com/AleksSavelev/PowerBI-visuals-WordCloud.git
+[submodule "visuals/PowerBI-visuals-Tornado"]
+	path = visuals/PowerBI-visuals-Tornado
+	url = https://github.com/AleksSavelev/PowerBI-visuals-Tornado.git
+[submodule "visuals/PowerBI-visuals-timeline"]
+	path = visuals/PowerBI-visuals-timeline
+	url = https://github.com/AleksSavelev/PowerBI-visuals-timeline.git
