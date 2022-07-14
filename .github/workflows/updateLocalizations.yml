@@ -13,13 +13,13 @@ jobs:
       APPROVE_BOT_EMAIL: ${{secrets.APPROVE_BOT_EMAIL}}
     outputs:
       branch-name: ${{steps.info.outputs.branch}}
-      pr-date: ${{steps.info.outputs.pr-date}}
+      pr-name: ${{steps.info.outputs.pr-name}}
     steps:
       - name: Prepare info
         id: info
         run: |
           echo "::set-output name=branch::$(date +'new-translations_%F_%H-%M-%S')"
-          echo "::set-output name=pr-date::$(date +'New translations (%F %T %Z)')"
+          echo "::set-output name=pr-name::$(date +'New translations (%F %T %Z)')"
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.LOC_TOKEN}}
@@ -65,7 +65,7 @@ jobs:
             git push --set-upstream origin $BRANCH && gh pr create -B $defaultBranchName -b "Auto created Pull Request with new translations" -t "$PR_NAME" || \
             echo "New pull request to $repoName wasn't created"
         env:
-          PR_NAME: ${{steps.info.outputs.pr-date}}
+          PR_NAME: ${{steps.info.outputs.pr-name}}
           BRANCH: ${{steps.info.outputs.branch}}
       - name: Set Loc bot config details
         run: |
@@ -123,7 +123,7 @@ jobs:
             cd $mainFolder
           done;
         env:
-          BRANCH: ${{steps.info.outputs.branch}}
+          BRANCH: ${{needs.update_translations.outputs.branch}}
       - name: Copy translations to submodules
         run: |
           for file in ./visuals/*/stringResources/*/resources.resjson; do 
@@ -155,8 +155,8 @@ jobs:
             echo "::endgroup::"
           done;
         env:
-          BRANCH: ${{steps.info.outputs.branch}}
-          PR_NAME: ${{steps.info.outputs.pr-date}}
+          BRANCH: ${{needs.update_translations.outputs.branch}}
+          PR_NAME: ${{needs.update_translations.outputs.pr-name}}
       - name: Set Loc bot config details
         run: |
           git config --global user.name $APPROVE_BOT_NAME
