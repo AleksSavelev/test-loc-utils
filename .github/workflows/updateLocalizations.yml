@@ -123,7 +123,7 @@ jobs:
             cd $mainFolder
           done;
         env:
-          BRANCH: ${{needs.update_translations.outputs.branch-name}}
+          BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
       - name: Copy translations to submodules
         run: |
           for file in ./visuals/*/stringResources/*/resources.resjson; do 
@@ -155,8 +155,8 @@ jobs:
             echo "::endgroup::"
           done;
         env:
-          BRANCH: ${{needs.update_translations.outputs.branch-name}}
-          PR_NAME: ${{needs.update_translations.outputs.pr-name}}
+          BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
+          PR_NAME: ${{needs.update_en_localization.outputs.pr-name}}
       - name: Set Loc bot config details
         run: |
           git config --global user.name $APPROVE_BOT_NAME
@@ -188,4 +188,4 @@ jobs:
           done;
         env:
           GITHUB_TOKEN: ${{ secrets.APPROVE_TOKEN }}
-          BRANCH: ${{needs.update_translations.outputs.branch-name}}
+          BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
