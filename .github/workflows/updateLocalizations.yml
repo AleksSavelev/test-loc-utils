@@ -95,7 +95,7 @@ jobs:
   update_other_localizations:
     environment: update localizations
     runs-on: ubuntu-latest
-    needs: update_en_localizations
+    needs: update_en_localization
     env:
       LOC_BOT_NAME: ${{secrets.LOC_BOT_NAME}}
       LOC_BOT_EMAIL: ${{secrets.LOC_BOT_EMAIL}}
