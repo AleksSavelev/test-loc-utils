@@ -74,21 +74,21 @@ jobs:
       - name: Approve pull request
         run: |
           pullRequestNumber=$(gh pr list --state=open --head=$BRANCH --json number)
-          if [[ $pullRequestNumber == "[]" ]]; then
+          if [[ $pullRequestNumber != "[]" ]]; then
+            defaultBranchName=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+            changes="$(git diff origin/$defaultBranchName)"
+            if [[ $changes != "" ]]; then
+              gh pr review $BRANCH --approve
+              echo "Pull request was approved"
+              # gh pr merge $BRANCH -s --auto -t "New translations"
+              echo "Pull request was merged"
+            else
+              gh pr close -d $BRANCH
+              echo "No changes"
+            fi
+          else
             echo "No pull request"
-            continue
           fi
-          defaultBranchName=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
-          changes="$(git diff origin/$defaultBranchName)"
-          if [[ $changes == "" ]]; then
-            gh pr close -d $BRANCH
-            echo "No changes"
-            continue
-          fi
-          gh pr review $BRANCH --approve
-          echo "Pull request was approved"
-          # gh pr merge $BRANCH -s --auto -t "New translations"
-          echo "Pull request was merged"
         env:
           GITHUB_TOKEN: ${{secrets.APPROVE_TOKEN}}
           BRANCH: ${{steps.info.outputs.branch}}
