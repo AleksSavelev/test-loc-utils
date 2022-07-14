@@ -118,6 +118,7 @@ jobs:
               git -C $folder config remote.origin.fetch +refs/heads/*:refs/remotes/origin/* 
               cd "$mainFolder/$folder"
               git fetch
+              git status
               git checkout -b $BRANCH
             echo "::endgroup::"
             cd $mainFolder
