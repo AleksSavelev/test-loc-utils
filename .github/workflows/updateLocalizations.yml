@@ -119,6 +119,7 @@ jobs:
               cd "$mainFolder/$folder"
               git fetch
               git status
+              ls
               git checkout -b $BRANCH
             echo "::endgroup::"
             cd $mainFolder
