@@ -10,3 +10,6 @@
 [submodule "visuals/powerbi-visuals-wordcloud"]
 	path = visuals/powerbi-visuals-wordcloud
 	url = https://github.com/alekssavelev/powerbi-visuals-wordcloud
+[submodule "visuals/test-repo"]
+	path = visuals/test-repo
+	url = https://github.com/AleksSavelev/test-repo.git
