@@ -108,6 +108,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          token: ${{ secrets.LOC_TOKEN}}
           submodules: recursive
           persist-credentials: true
       - name: Set Loc bot config details
@@ -171,38 +172,38 @@ jobs:
         env:
           BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
           PR_NAME: ${{needs.update_en_localization.outputs.pr-name}}
-      - name: Set Loc bot config details
-        run: |
-          git config --global user.name $APPROVE_BOT_NAME
-          git config --global user.email $APPROVE_BOT_EMAIL
-      - name: Approve pull requests
-        run: |
-          mainFolder=$PWD
-          for folder in visuals/*; do
-            repoName=$(echo $folder| cut -d'/' -f 2)
-            echo "::group::Approve and merge to $repoName"  
-              cd "$mainFolder/$folder"
-              pullRequestNumber=$(gh pr list --state=open --head=$BRANCH --json number)
-              if [[ $pullRequestNumber == "[]" ]]; then
-                echo "No pull request for $repoName"
-                continue
-              fi
-              defaultBranchName=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
-              changes="$(git diff origin/$defaultBranchName)"
-              if [[ $changes == "" ]]; then
-                gh pr close -d $BRANCH
-                echo "No changes for $repoName"
-                continue
-              fi
-              gh pr review $BRANCH --approve
-              echo "Pull request to $repoName was approved"
-              # gh pr merge $BRANCH -s --auto -t "New translations"
-              echo "Pull request to $repoName was merged"
-            echo "::endgroup::"
-          done;
-        env:
-          GH_TOKEN: ${{ secrets.APPROVE_TOKEN }}
-          BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
+      # - name: Set Loc bot config details
+      #   run: |
+      #     git config --global user.name $APPROVE_BOT_NAME
+      #     git config --global user.email $APPROVE_BOT_EMAIL
+      # - name: Approve pull requests
+      #   run: |
+      #     mainFolder=$PWD
+      #     for folder in visuals/*; do
+      #       repoName=$(echo $folder| cut -d'/' -f 2)
+      #       echo "::group::Approve and merge to $repoName"  
+      #         cd "$mainFolder/$folder"
+      #         pullRequestNumber=$(gh pr list --state=open --head=$BRANCH --json number)
+      #         if [[ $pullRequestNumber == "[]" ]]; then
+      #           echo "No pull request for $repoName"
+      #           continue
+      #         fi
+      #         defaultBranchName=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+      #         changes="$(git diff origin/$defaultBranchName)"
+      #         if [[ $changes == "" ]]; then
+      #           gh pr close -d $BRANCH
+      #           echo "No changes for $repoName"
+      #           continue
+      #         fi
+      #         gh pr review $BRANCH --approve
+      #         echo "Pull request to $repoName was approved"
+      #         # gh pr merge $BRANCH -s --auto -t "New translations"
+      #         echo "Pull request to $repoName was merged"
+      #       echo "::endgroup::"
+      #     done;
+      #   env:
+      #     GH_TOKEN: ${{ secrets.APPROVE_TOKEN }}
+      #     BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
 
 
 
