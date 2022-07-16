@@ -57,7 +57,7 @@ jobs:
         run: |
           changes="$(git diff)"
           if [[ $changes != "" ]]; then
-            defaultBranchName=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+            defaultBranchName="localizationutils"
             git add . && \
               git commit -S -m "New translations" && \
               git push --set-upstream origin $BRANCH && gh pr create -B $defaultBranchName -b "Auto created Pull Request with new translations" -t "$PR_NAME" || \
@@ -76,7 +76,7 @@ jobs:
         run: |
           pullRequestNumber=$(gh pr list --state=open --head=$BRANCH --json number)
           if [[ $pullRequestNumber != "[]" ]]; then
-            defaultBranchName=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+            defaultBranchName="localizationutils"
             changes="$(git diff origin/$defaultBranchName)"
             if [[ $changes != "" ]]; then
               gh pr review $BRANCH --approve
