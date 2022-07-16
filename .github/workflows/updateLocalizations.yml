@@ -83,7 +83,7 @@ jobs:
             if [[ $changes != "" ]]; then
               gh pr review $BRANCH --approve
               echo "Pull request was approved"
-              gh pr merge $BRANCH -s --auto -t "New translations"
+              # gh pr merge $BRANCH -s --auto -t "New translations"
               echo "Pull request was merged"
             else
               gh pr close -d $BRANCH
@@ -102,6 +102,7 @@ jobs:
     env:
       LOC_BOT_NAME: ${{secrets.LOC_BOT_NAME}}
       LOC_BOT_EMAIL: ${{secrets.LOC_BOT_EMAIL}}
+      GH_TOKEN: ${{secrets.LOC_TOKEN}}
       APPROVE_BOT_NAME: ${{secrets.APPROVE_BOT_NAME}}
       APPROVE_BOT_EMAIL: ${{secrets.APPROVE_BOT_EMAIL}}
     steps:
@@ -168,7 +169,6 @@ jobs:
             echo "::endgroup::"
           done;
         env:
-          GH_TOKEN: ${{secrets.LOC_TOKEN}}
           BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
           PR_NAME: ${{needs.update_en_localization.outputs.pr-name}}
       - name: Set Loc bot config details
@@ -201,7 +201,7 @@ jobs:
             echo "::endgroup::"
           done;
         env:
-          GITHUB_TOKEN: ${{ secrets.APPROVE_TOKEN }}
+          GH_TOKEN: ${{ secrets.APPROVE_TOKEN }}
           BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
 
 
