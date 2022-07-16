@@ -1,5 +1,7 @@
 on:
-  push
+  push:
+    branch:
+      localizationutils
 
 jobs:
   update_en_localization:
@@ -91,7 +93,7 @@ jobs:
             echo "No pull request"
           fi
         env:
-          GITHUB_TOKEN: ${{secrets.APPROVE_TOKEN}}
+          GH_TOKEN: ${{secrets.APPROVE_TOKEN}}
           BRANCH: ${{steps.info.outputs.branch}}
   update_other_localizations:
     environment: update localizations
