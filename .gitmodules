@@ -10,3 +10,6 @@
 [submodule "visuals/test-repo"]
 	path = visuals/test-repo
 	url = https://github.com/AleksSavelev/test-repo.git
+[submodule "visuals/powerbi-visuals-timeline"]
+	path = visuals/powerbi-visuals-timeline
+	url = https://github.com/microsoft/powerbi-visuals-timeline
