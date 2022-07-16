@@ -1,7 +1,4 @@
-on:
-  push:
-    branch:
-      localizationutils
+on: workflow_dispatch
 
 jobs:
   update_en_localization:
