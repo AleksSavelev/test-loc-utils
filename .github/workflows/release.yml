@@ -24,7 +24,7 @@ jobs:
       run: |
         npm i
     - run: |
-        zip -r release.zip . -x ".git/*" ".github/*" "node_modules/" "src/"
+        zip -r release.zip . -x ".git/*" ".github/*" "node_modules/*" "src/*"
         ls
         unzip release.zip
         ls
