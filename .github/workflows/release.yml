@@ -12,18 +12,24 @@ jobs:
       GH_TOKEN: ${{secrets.GH_TOKEN}}
     steps:
     - uses: actions/checkout@v2
-    - name: Add config details
-      run: |
-        git config --global user.name ${{secrets.NAME}}
-        git config --global user.email ${{secrets.EMAIL}}
-    - name: Move release to draft
-      run: gh release edit $TAG_NAME --draft=true
-      env:
-        TAG_NAME: ${{ github.event.release.tag_name }}
+    # - name: Add config details
+    #   run: |
+    #     git config --global user.name ${{secrets.NAME}}
+    #     git config --global user.email ${{secrets.EMAIL}}
+    # - name: Move release to draft
+    #   run: gh release edit $TAG_NAME --draft=true
+    #   env:
+    #     TAG_NAME: ${{ github.event.release.tag_name }}
     - name: Run npm install, build and test
       run: |
         npm i
-    - run: zip -r release.zip . -x ".git/*" ".github/*" "node-modules/" "src/"
+    - run: |
+        zip -r release.zip . -x ".git/*" ".github/*" "node-modules/" "src/"
+        ls
+        unzip release.zip
+        ls
+        cd release
+        ls
     - name: Upload production artifacts
       run: |
         gh release upload $TAG_NAME "lib.zip#build"
