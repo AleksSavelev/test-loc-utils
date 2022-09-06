@@ -23,16 +23,10 @@ jobs:
     - name: Run npm install, build and test
       run: |
         npm i
-    - run: |
-        zip -r release.zip . -x ".git/*" ".github/*" "node_modules/*" "src/*"
-        ls
-        unzip release.zip
-        ls
-        cd release
-        ls
+    - run: zip -r release.zip "lib/*" "changelog.md", "license", "package.json", "readme.md"
     - name: Upload production artifacts
       run: |
-        gh release upload $TAG_NAME "lib.zip#build"
+        gh release upload $TAG_NAME "release.zip#release"
         gh release edit $TAG_NAME --draft=false
       env:
         TAG_NAME: ${{ github.event.release.tag_name }}
