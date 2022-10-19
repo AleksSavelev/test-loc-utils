@@ -23,7 +23,7 @@ jobs:
     # - name: Run npm install, build and test
     #   run: |
         # npm i
-    - run: zip -r release.zip lib CHANGELOG.md LICENSE package.json package-lock.json README.md -x 'lib/src/*' 'lib/test/*'
+    - run: zip -r release.zip . -x '.github/*' .gitignore
     - name: Upload production artifacts
       run: |
         gh release upload $TAG_NAME "release.zip#release"
