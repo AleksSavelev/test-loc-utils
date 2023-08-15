@@ -117,20 +117,26 @@ jobs:
           for folder in visuals/*; do
             repoName=$(echo $folder| cut -d'/' -f 2)
             echo "::group::Approve and merge to $repoName"  
+              echo 1
               cd "$mainFolder/$folder"
+              echo 3
               pullRequestNumber=$(gh pr list --state=open --head=$BRANCH --json number)
+              echo 4
               if [[ $pullRequestNumber == "[]" ]]; then
                 echo "No pull request for $repoName"
                 continue
               fi
               defaultBranchName=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+              echo 5
               changes="$(git diff origin/$defaultBranchName)"
               if [[ $changes == "" ]]; then
                 gh pr close -d $BRANCH
                 echo "No changes for $repoName"
                 continue
               fi
+              echo 6
               gh pr review $BRANCH --approve
+              echo 7
               echo "Pull request to $repoName was approved"
             echo "::endgroup::"
           done;
