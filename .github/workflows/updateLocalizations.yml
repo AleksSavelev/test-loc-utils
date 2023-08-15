@@ -102,6 +102,7 @@ jobs:
     env: 
       APPROVE_BOT_NAME: ${{secrets.APPROVE_BOT_NAME}}
       APPROVE_BOT_EMAIL: ${{secrets.APPROVE_BOT_EMAIL}}
+      GH_AUTH: ${{secrets.APPROVE_TOKEN}}
     steps:
       - uses: actions/checkout@v2
         with:
