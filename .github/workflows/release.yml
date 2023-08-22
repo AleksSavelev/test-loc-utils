@@ -27,7 +27,7 @@ jobs:
         npm run test
         npm run lint
       env:
-        BRANCH_NAME: ${{secrets.BRANCH_NAME}}
+        BRANCH_NAME: ${{env.BRANCH_NAME}}
     - run: zip -r lib.zip . -x '.*' 'node_modules/*'
     - name: Upload production artifacts
       run: |
