@@ -12,6 +12,8 @@ jobs:
       GH_TOKEN: ${{secrets.GH_TOKEN}}
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Add config details
       run: |
         git config --global user.name ${{secrets.NAME}}
