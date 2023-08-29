@@ -18,7 +18,7 @@ jobs:
         git config --global user.email ${{secrets.EMAIL}}
     - name: Run npm install, build and test
       run: |
-        git branch -r
+        echo $(git branch -r)
         git checkout localizationutils
         npm i
         npm run test
