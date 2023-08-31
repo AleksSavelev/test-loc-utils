@@ -102,7 +102,7 @@ jobs:
     env: 
       APPROVE_BOT_NAME: ${{secrets.APPROVE_BOT_NAME}}
       APPROVE_BOT_EMAIL: ${{secrets.APPROVE_BOT_EMAIL}}
-      GH_AUTH: ${{secrets.APPROVE_TOKEN}}
+      GH_TOKEN: ${{secrets.APPROVE_TOKEN}}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -121,7 +121,6 @@ jobs:
               echo 1
               cd "$mainFolder/$folder"
               echo 3
-              gh auth login
               pullRequestNumber=$(gh pr list --state=open --head=$BRANCH --json number)
               echo 4
               if [[ $pullRequestNumber == "[]" ]]; then
@@ -143,5 +142,4 @@ jobs:
             echo "::endgroup::"
           done;
         env:
-          GH_TOKEN: ${{ secrets.APPROVE_TOKEN }}
           BRANCH: ${{needs.update_translations.outputs.branch-name}}
