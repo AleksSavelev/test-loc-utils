@@ -121,7 +121,7 @@ jobs:
               echo 1
               cd "$mainFolder/$folder"
               echo 3
-              gh auth 
+              gh auth login
               pullRequestNumber=$(gh pr list --state=open --head=$BRANCH --json number)
               echo 4
               if [[ $pullRequestNumber == "[]" ]]; then
