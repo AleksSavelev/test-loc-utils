@@ -162,15 +162,12 @@ jobs:
                 echo "No changes for $repoName"
                 continue
               fi
-              git add .
-              echo 1
-              git commit -S -m "New translations"
-              echo 2
-              git push --set-upstream origin $BRANCH 
-              echo 3
-              gh pr create -B $defaultBranchName -b "Auto created Pull Request with new translations" -t "$PR_NAME" || \
+              git add . && \
+                git commit -S -m "New translations" && \
+                git push --set-upstream origin $BRANCH && \ 
+                echo 1 && \
+                gh pr create -B $defaultBranchName -b "Auto created Pull Request with new translations" -t "$PR_NAME" || \
                 echo "New pull request to $repoName wasn't created"
-              echo 3
             echo "::endgroup::"
           done;
         env:
