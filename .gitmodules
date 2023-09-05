@@ -1,0 +1,12 @@
+[submodule "visuals/powerbi-visuals-asterplot"]
+	path = visuals/powerbi-visuals-asterplot
+	url = https://github.com/alekssavelev/powerbi-visuals-asterplot.git
+[submodule "visuals/powerbi-visuals-tornado"]
+	path = visuals/powerbi-visuals-tornado
+	url = https://github.com/alekssavelev/powerbi-visuals-tornado
+[submodule "visuals/powerbi-visuals-wordcloud"]
+	path = visuals/powerbi-visuals-wordcloud
+	url = https://github.com/alekssavelev/powerbi-visuals-wordcloud
+[submodule "visuals/test-repo"]
+	path = visuals/test-repo
+	url = https://github.com/AleksSavelev/test-repo.git
