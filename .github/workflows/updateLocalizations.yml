@@ -131,18 +131,13 @@ jobs:
         run: |
           git pull --recurse-submodules
           git submodule update --remote --recursive
-          mainFolder=$PWD
           for folder in visuals/*; do
-            repoName=$(echo $folder| cut -d'/' -f 2)
-            echo "::group::Configure $repoName" 
-              git -C $folder config remote.origin.fetch +refs/heads/*:refs/remotes/origin/* 
-              cd "$mainFolder/$folder"
-              git fetch
-              git checkout dev || echo "No dev branch in $repoName"
-              git checkout -b $BRANCH
-            echo "::endgroup::"
-            cd $mainFolder
+            git -C $folder config remote.origin.fetch +refs/heads/*:refs/remotes/origin/* 
           done;
+          git submodule foreach --recursive '\
+            git fetch; \
+            git checkout dev || echo "No dev branch in $name"; \
+            git checkout -b $BRANCH'
         env:
           BRANCH: ${{needs.update_en_localization.outputs.branch-name}}
       - name: Copy translations to submodules
