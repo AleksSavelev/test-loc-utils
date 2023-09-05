@@ -169,12 +169,11 @@ jobs:
               if git show-ref --quiet refs/heads/dev; then 
                 originalBranchName=dev 
               fi
-              >-
-                git add . &&
-                git commit -S -m "New translations" &&
-                git push --set-upstream origin $BRANCH &&
-                gh pr create -B $originalBranchName -b "Auto created Pull Request with new translations" -t "$PR_NAME" ||
-                echo "New pull request to $repoName wasn't created"
+              git add . &&
+              git commit -S -m "New translations" &&
+              git push --set-upstream origin $BRANCH &&
+              gh pr create -B $originalBranchName -b "Auto created Pull Request with new translations" -t "$PR_NAME" ||
+              echo "New pull request to $repoName wasn't created"
             echo "::endgroup::"
           done;
         env:
