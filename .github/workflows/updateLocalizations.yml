@@ -43,17 +43,10 @@ jobs:
           git checkout -b $BRANCH
           git submodule init
           git submodule update --remote --recursive
-          mainFolder=$PWD
           for folder in visuals/*; do
-            repoName=$(echo $folder| cut -d'/' -f 2)
-            echo "::group::Configure $repoName" 
-              git -C $folder config remote.origin.fetch +refs/heads/*:refs/remotes/origin/* 
-              cd "$mainFolder/$folder"
-              git fetch
-              git checkout dev || echo "No dev branch in $repoName"
-            echo "::endgroup::"
-            cd $mainFolder
+            git -C $folder config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
           done;
+          git submodule foreach --recursive 'git fetch; git checkout dev || echo "No dev branch in $name"'
         env:
           BRANCH: ${{steps.info.outputs.branch-name}}
       - name: Copy EN translation
@@ -158,6 +151,7 @@ jobs:
             if [[ $file == *"/en-US/"* ]]; then 
               continue
             fi
+            echo $file
             substring="visuals/"
             location="${file/$substring/localizations/}"
             cp $location $file;
