@@ -43,7 +43,7 @@ jobs:
           git checkout -b $BRANCH
           git submodule init
           git submodule update --remote --recursive
-          git submodule foreach --recursive git checkout dev || echo "No dev branch"
+          git submodule foreach --recursive git checkout dev
         env:
           BRANCH: ${{steps.info.outputs.branch-name}}
       - name: Copy EN translation
