@@ -43,8 +43,17 @@ jobs:
           git checkout -b $BRANCH
           git submodule init
           git submodule update --remote --recursive
-          git submodule foreach --recursive echo $(git remote show origin)
-          git submodule foreach --recursive 'git checkout dev || echo "No dev branch in $name"'
+          mainFolder=$PWD
+          for folder in visuals/*; do
+            repoName=$(echo $folder| cut -d'/' -f 2)
+            echo "::group::Configure $repoName" 
+              git -C $folder config remote.origin.fetch +refs/heads/*:refs/remotes/origin/* 
+              cd "$mainFolder/$folder"
+              git fetch
+              git checkout dev || echo "No dev branch in $repoName"
+            echo "::endgroup::"
+            cd $mainFolder
+          done;
         env:
           BRANCH: ${{steps.info.outputs.branch-name}}
       - name: Copy EN translation
